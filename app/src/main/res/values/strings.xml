@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AppTareas</string>
+    <string name="action_settings">Settings</string>
+    <string name="nuevo_aviso">Nueva Tarea</string>
+    <string name="salir">Salir</string>
+    <string name="acercade">Acerca De</string>
+    <string name="app_name2">Tareas</string>
+</resources>
