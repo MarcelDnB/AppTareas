@@ -3,6 +3,7 @@ package com.gmail.gigi.dan2011.apptareas;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter<String> modeAdapter = new ArrayAdapter<>(MainActivity.this,
                         android.R.layout.simple_list_item_1, android.R.id.text1, modes);
                 modeListView.setAdapter(modeAdapter);
+                modeListView.setBackgroundColor(Color.parseColor("#919191"));
                 builder.setView(modeListView);
                 final Dialog dialog = builder.create();
                 dialog.show();
@@ -172,41 +174,52 @@ public class MainActivity extends AppCompatActivity {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         if (aux == 1) {
             dialog.setContentView(R.layout.ver_activity);
-        } else {
+        }else if(aux==2) {
+            dialog.setContentView(R.layout.acercade_activity);
+        }else {
             dialog.setContentView(R.layout.dialog_custom);
         }
         TextView titleView = (TextView) dialog.findViewById(R.id.custom_title);
         final EditText editCustom = (EditText) dialog.findViewById(R.id.custom_edit_reminder);
         final TextView showText = (TextView) dialog.findViewById(R.id.ver_texto);
+        final TextView acercade_text = (TextView) dialog.findViewById(R.id.acercade_text);
         Button commitButton = (Button) dialog.findViewById(R.id.custom_button_commit);
         Button verButton = (Button) dialog.findViewById(R.id.ver_button);
+        Button acercadeButton = (Button) dialog.findViewById(R.id.acercade_button);
         final CheckBox checkBox = (CheckBox) dialog.findViewById(R.id.custom_check_box);
         LinearLayout rootLayout = (LinearLayout) dialog.findViewById(R.id.custom_root_layout);
         final boolean isEditOperation = (aviso != null);
         final boolean isShowOperation = (aux == 1);
-
-        if (isShowOperation) {
-            showText.setText(aviso.getContent());
-        }
+        final boolean isAcercadeOperation = (aux==2);
 
         //esto es para un edit
         if (isEditOperation && !isShowOperation) {
-            titleView.setText("Editar Tarea");
+            titleView.setText("Editar Tarea:");
             checkBox.setChecked(aviso.getImportant() == 1);
             editCustom.setText(aviso.getContent());
-            rootLayout.setBackgroundColor(getResources().getColor(R.color.gris_oscuro));
+            rootLayout.setBackgroundColor(getResources().getColor(R.color.prueba3));
         }
 
         if (isShowOperation) {
+            showText.setText(aviso.getContent());
             verButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     dialog.dismiss();
                 }
             });
-
             dialog.show();
-        }else {
+        }else if(isAcercadeOperation) {
+            acercade_text.setText("Este es un proyecto free-source, si me quieres ayudar o tienes alguna idea de una posible implementacion descarga mi proyecto de github: \n\n https://github.com/MarcelDnB\n\n Ó habla conmigo:\n\n Contacto: gigi.dan2011@gmail.com");
+            acercadeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
+        }
+        else {
             commitButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -252,6 +265,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             case R.id.action_salir:
                 finish();
+                return true;
+            case R.id.action_acercade:
+                fireCustomDialog(null,2);
                 return true;
             default:
                 return false;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/custom_root_layout"
+    android:layout_width="300dp"
+    android:layout_height="fill_parent"
+    android:background="@color/blanco"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/acercade_text"
+        android:layout_width="match_parent"
+        android:layout_height="400sp"
+        android:background="@color/prueba3"
+        android:paddingLeft="3sp"
+        android:paddingRight="3sp"
+        android:paddingTop="10sp"
+        android:paddingBottom="3sp"
+        android:linksClickable="true"
+        android:autoLink="all"
+        android:textIsSelectable="true"
+        android:layout_marginLeft="3sp"
+        android:layout_marginRight="3sp"
+        android:layout_marginTop="3sp"
+        android:textAlignment="center"
+        android:textColor="@color/blanco"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/acercade_button"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:layout_marginLeft="3sp"
+        android:layout_marginTop="3sp"
+        android:layout_marginRight="3sp"
+        android:layout_marginBottom="3sp"
+        android:background="@color/azul_guapo"
+        android:text="Cerrar" />
+</LinearLayout>
